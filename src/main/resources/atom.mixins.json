@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.jsaperr.atom.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "PlayerMixin",
+    "accessor.WalkAnimationStateAccessor"
+  ],
+  "client": [
+    "client.PlayerRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
