@@ -8,18 +8,31 @@ import net.minecraft.world.entity.EntityType;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @OnlyIn(Dist.CLIENT)
 public class ClientPayloadHandler {
+    public static void register(PayloadRegistrar registrar) {
+        registrar.playToClient(MorphSyncPayload.TYPE, MorphSyncPayload.STREAM_CODEC,
+            ClientPayloadHandler::handleMorphSync);
+    }
+
     public static void handleMorphSync(MorphSyncPayload payload, IPayloadContext ctx) {
-        var player = Minecraft.getInstance().player;
-        if (player == null) return;
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.level == null) return;
+
+        UUID targetUuid = payload.playerUuid();
         Optional<EntityType<?>> resolved = payload.entityTypeId()
             .flatMap(id -> BuiltInRegistries.ENTITY_TYPE.getOptional(id));
-        player.setData(MorphAttachments.ACTIVE_MORPH, resolved);
-        player.refreshDimensions();
-        MorphPuppetManager.setMorph(player.getUUID(), resolved);
+
+        MorphPuppetManager.setMorph(targetUuid, resolved);
+
+        if (mc.player != null && mc.player.getUUID().equals(targetUuid)) {
+            mc.player.setData(MorphAttachments.ACTIVE_MORPH, resolved);
+            mc.player.refreshDimensions();
+        }
     }
 }

@@ -19,6 +19,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @OnlyIn(Dist.CLIENT)
 @Mixin(PlayerRenderer.class)
 public class PlayerRendererMixin {
+    @Inject(method = "renderRightHand", at = @At("HEAD"), cancellable = true)
+    private void onRenderRightHand(PoseStack poseStack, MultiBufferSource buffer, int combinedLight,
+                                   AbstractClientPlayer player, CallbackInfo ci) {
+        if (MorphPuppetManager.getPuppet(player.getUUID()).isPresent()) ci.cancel();
+    }
+
+    @Inject(method = "renderLeftHand", at = @At("HEAD"), cancellable = true)
+    private void onRenderLeftHand(PoseStack poseStack, MultiBufferSource buffer, int combinedLight,
+                                  AbstractClientPlayer player, CallbackInfo ci) {
+        if (MorphPuppetManager.getPuppet(player.getUUID()).isPresent()) ci.cancel();
+    }
+
     @Inject(method = "render", at = @At("HEAD"), cancellable = true)
     private void onRender(AbstractClientPlayer player, float entityYaw, float partialTick,
                           PoseStack poseStack, MultiBufferSource buffer, int packedLight, CallbackInfo ci) {

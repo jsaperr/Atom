@@ -35,9 +35,12 @@ neoForge {
     // These can be tweaked, removed, or duplicated as needed.
     runs {
         client {
+            devLogin = true
             client()
 
-            jvmArguments.addAll '-Xmx4G', '-Xms1G'
+            jvmArguments.addAll '-Xmx3G', '-Xms1G',
+                '-XX:ReservedCodeCacheSize=512m',
+                '-XX:HeapBaseMinAddress=0x100000000'
 
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
