@@ -1,5 +1,6 @@
-package com.jsaperr.atom;
+package com.jsaperr.atom.morph;
 
+import com.jsaperr.atom.Atom;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;

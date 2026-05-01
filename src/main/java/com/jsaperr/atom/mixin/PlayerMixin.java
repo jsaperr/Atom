@@ -1,6 +1,6 @@
 package com.jsaperr.atom.mixin;
 
-import com.jsaperr.atom.MorphAttachments;
+import com.jsaperr.atom.morph.MorphAttachments;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Pose;

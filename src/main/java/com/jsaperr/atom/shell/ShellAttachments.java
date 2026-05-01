@@ -1,5 +1,6 @@
-package com.jsaperr.atom;
+package com.jsaperr.atom.shell;
 
+import com.jsaperr.atom.Atom;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.registries.DeferredRegister;

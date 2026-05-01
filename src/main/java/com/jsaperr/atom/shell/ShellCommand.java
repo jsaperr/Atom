@@ -1,5 +1,8 @@
-package com.jsaperr.atom;
+package com.jsaperr.atom.shell;
 
+import com.jsaperr.atom.Atom;
+import com.jsaperr.atom.morph.MorphAttachments;
+import com.jsaperr.atom.morph.MorphSyncPayload;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import net.minecraft.commands.Commands;
 import net.minecraft.core.registries.Registries;

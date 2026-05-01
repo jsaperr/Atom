@@ -1,7 +1,7 @@
 package com.jsaperr.atom.client;
 
-import com.jsaperr.atom.MorphAttachments;
-import com.jsaperr.atom.MorphSyncPayload;
+import com.jsaperr.atom.morph.MorphAttachments;
+import com.jsaperr.atom.morph.MorphSyncPayload;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;

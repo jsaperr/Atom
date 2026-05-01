@@ -1,4 +1,4 @@
-package com.jsaperr.atom;
+package com.jsaperr.atom.shell;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

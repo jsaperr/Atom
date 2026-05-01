@@ -1,5 +1,6 @@
-package com.jsaperr.atom;
+package com.jsaperr.atom.morph;
 
+import com.jsaperr.atom.Atom;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
 import net.neoforged.bus.api.IEventBus;
@@ -11,7 +12,7 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 public class MorphAttachments {
-    static final DeferredRegister<AttachmentType<?>> ATTACHMENT_TYPES =
+    public static final DeferredRegister<AttachmentType<?>> ATTACHMENT_TYPES =
         DeferredRegister.create(NeoForgeRegistries.Keys.ATTACHMENT_TYPES, Atom.MODID);
 
     public static final Supplier<AttachmentType<Optional<EntityType<?>>>> ACTIVE_MORPH =
@@ -25,7 +26,7 @@ public class MorphAttachments {
                 .build()
         );
 
-    static void register(IEventBus modBus) {
+    public static void register(IEventBus modBus) {
         ATTACHMENT_TYPES.register(modBus);
     }
 }

@@ -1,4 +1,4 @@
-package com.jsaperr.atom;
+package com.jsaperr.atom.shell;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;

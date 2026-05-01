@@ -1,10 +1,17 @@
 package com.jsaperr.atom;
 
+import com.jsaperr.atom.item.ExtractorItem;
+import com.jsaperr.atom.morph.MorphAttachments;
+import com.jsaperr.atom.morph.MorphCommand;
+import com.jsaperr.atom.morph.MorphSyncPayload;
+import com.jsaperr.atom.shell.ShellAttachments;
+import com.jsaperr.atom.shell.ShellEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.item.Item;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.IEventBus;
@@ -27,6 +34,12 @@ import java.util.function.Supplier;
 public class Atom {
     public static final String MODID = "atom";
 
+    public static final DeferredRegister<Item> ITEMS =
+            DeferredRegister.create(BuiltInRegistries.ITEM, MODID);
+
+    public static final Supplier<ExtractorItem> EXTRACTOR =
+            ITEMS.register("extractor", () -> new ExtractorItem(new Item.Properties().stacksTo(1)));
+
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES =
             DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, MODID);
 
@@ -39,6 +52,7 @@ public class Atom {
     public Atom(IEventBus modEventBus, ModContainer modContainer) {
         MorphAttachments.register(modEventBus);
         ShellAttachments.register(modEventBus);
+        ITEMS.register(modEventBus);
         ENTITY_TYPES.register(modEventBus);
     }
 

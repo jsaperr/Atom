@@ -1,6 +1,6 @@
 package com.jsaperr.atom.client;
 
-import com.jsaperr.atom.ShellEntity;
+import com.jsaperr.atom.shell.ShellEntity;
 import com.mojang.authlib.GameProfile;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
