@@ -24,7 +24,7 @@ import java.util.Set;
 
 public class MorphPlatformBlock extends Block {
 
-    private static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 7, 16);
+    private static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 5, 16);
 
     public MorphPlatformBlock(Properties properties) {
         super(properties);
