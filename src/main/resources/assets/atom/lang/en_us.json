@@ -1,3 +1,9 @@
 {
-  "item.atom.extractor": "Extractor"
+  "itemGroup.atom": "Atom",
+  "item.atom.extractor": "Extractor",
+  "block.atom.research_station": "Research Station",
+  "block.atom.morph_platform": "Morph Platform",
+  "gui.atom.tab.passive": "Passive",
+  "gui.atom.tab.common_hostile": "Hostile",
+  "gui.atom.tab.nether": "Nether"
 }

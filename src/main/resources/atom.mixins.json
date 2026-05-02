@@ -5,10 +5,17 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "PlayerMixin",
-    "accessor.WalkAnimationStateAccessor"
+    "NearestAttackableTargetGoalMixin",
+    "SpiderClimbMixin",
+    "TargetGoalMixin",
+    "accessor.WalkAnimationStateAccessor",
+    "accessor.LivingEntityJumpingAccessor",
+    "accessor.ChickenAccessor",
+    "accessor.TargetGoalAccessor"
   ],
   "client": [
-    "client.PlayerRendererMixin"
+    "client.PlayerRendererMixin",
+    "client.EffectRenderingInventoryScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

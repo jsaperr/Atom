@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#G#",
+    "#g#",
+    "SSS"
+  ],
+  "key": {
+    "#": {"item": "minecraft:iron_block"},
+    "G": {"item": "minecraft:glass_pane"},
+    "g": {"item": "minecraft:gold_block"},
+    "S": {"item": "minecraft:stone"}
+  },
+  "result": {
+    "id": "atom:research_station",
+    "count": 1
+  }
+}

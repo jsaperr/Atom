@@ -164,10 +164,14 @@ public class ShellCommand {
         player.getInventory().load(state.inventoryNbt().getList("Items", net.minecraft.nbt.Tag.TAG_COMPOUND));
         Optional<net.minecraft.world.entity.EntityType<?>> morphType = state.morph()
                 .flatMap(id -> BuiltInRegistries.ENTITY_TYPE.getOptional(id));
+        net.minecraft.nbt.CompoundTag variantTag = morphType
+                .map(t -> com.jsaperr.atom.morph.MorphVariantHelper.randomVariantTag(t, player.serverLevel(), player.blockPosition()))
+                .orElse(new net.minecraft.nbt.CompoundTag());
         player.setData(MorphAttachments.ACTIVE_MORPH, morphType);
+        player.setData(com.jsaperr.atom.morph.MorphAttachments.ACTIVE_MORPH_VARIANT, variantTag);
         player.refreshDimensions();
         PacketDistributor.sendToPlayersTrackingEntityAndSelf(player,
-                new MorphSyncPayload(player.getUUID(), state.morph()));
+                new MorphSyncPayload(player.getUUID(), state.morph(), variantTag));
         ShellPosition pos = state.position();
         ServerLevel targetLevel = player.getServer().getLevel(
                 ResourceKey.create(Registries.DIMENSION, pos.dimension())

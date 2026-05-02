@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#=#",
+    " I ",
+    " = "
+  ],
+  "key": {
+    "#": {"item": "minecraft:glass"},
+    "=": {"item": "minecraft:iron_ingot"},
+    "I": {"item": "minecraft:iron_block"}
+  },
+  "result": {
+    "id": "atom:extractor",
+    "count": 1
+  }
+}
