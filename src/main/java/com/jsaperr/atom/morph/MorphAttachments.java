@@ -42,6 +42,12 @@ public class MorphAttachments {
                 .build()
         );
 
+    public static final Supplier<AttachmentType<Optional<ResourceLocation>>> PENDING_MORPH =
+        ATTACHMENT_TYPES.register("pending_morph", () ->
+            AttachmentType.<Optional<ResourceLocation>>builder(() -> Optional.empty())
+                .build()
+        );
+
     public static void register(IEventBus modBus) {
         ATTACHMENT_TYPES.register(modBus);
     }
