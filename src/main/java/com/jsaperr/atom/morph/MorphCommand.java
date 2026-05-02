@@ -1,11 +1,13 @@
 package com.jsaperr.atom.morph;
 
 import com.jsaperr.atom.Atom;
+import com.jsaperr.atom.morph.passive.MorphPassiveHandler;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.ResourceLocationArgument;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -41,22 +43,28 @@ public class MorphCommand {
                             ctx.getSource().sendFailure(Component.literal("Unknown entity type: " + id));
                             return 0;
                         }
+                        CompoundTag variantTag = MorphVariantHelper.randomVariantTag(entityType.get(), player.serverLevel(), player.blockPosition());
+                        MorphPassiveHandler.stripPassives(player);
                         player.setData(MorphAttachments.ACTIVE_MORPH, entityType);
+                        player.setData(MorphAttachments.ACTIVE_MORPH_VARIANT, variantTag);
                         player.refreshDimensions();
                         applyStepHeight(player, entityType.get());
+                        MorphPassiveHandler.applyPassives(player, entityType.get());
                         PacketDistributor.sendToPlayersTrackingEntityAndSelf(player,
-                            new MorphSyncPayload(player.getUUID(), Optional.of(id)));
+                            new MorphSyncPayload(player.getUUID(), Optional.of(id), variantTag));
                         ctx.getSource().sendSuccess(() -> Component.literal("Morphed into " + id), false);
                         return 1;
                     })
                 )
                 .executes(ctx -> {
                     ServerPlayer player = ctx.getSource().getPlayerOrException();
+                    MorphPassiveHandler.stripPassives(player);
                     player.setData(MorphAttachments.ACTIVE_MORPH, Optional.empty());
+                    player.setData(MorphAttachments.ACTIVE_MORPH_VARIANT, new CompoundTag());
                     player.refreshDimensions();
                     resetStepHeight(player);
                     PacketDistributor.sendToPlayersTrackingEntityAndSelf(player,
-                        new MorphSyncPayload(player.getUUID(), Optional.empty()));
+                        new MorphSyncPayload(player.getUUID(), Optional.empty(), new CompoundTag()));
                     ctx.getSource().sendSuccess(() -> Component.literal("Returned to normal form"), false);
                     return 1;
                 })
