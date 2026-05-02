@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "atom:block/morph_platform" }
+  }
+}
